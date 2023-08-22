@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
+use App\Models\Category;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -19,12 +21,10 @@ class PostFactory extends Factory
         return [
             'title' => $this->faker->sentence(),
             'slug' => $this->faker->slug(),
-            'excerpt' => $this->faker->paragraph(),
-            'body' => $this->faker->paragraphs(3, true),
-
-
-
-            //
+            'excerpt' => $this->faker->paragraph(1, true),
+            'content' => $this->faker->paragraphs(3, true),
+            'user_id' => User::factory(),
+            'category_id' => Category::factory(),
         ];
     }
 }

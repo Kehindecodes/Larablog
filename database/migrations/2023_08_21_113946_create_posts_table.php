@@ -14,10 +14,12 @@ return new class extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->string('slug');
+            $table->string('excerpt');
             $table->text('content');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('category_id');
-            $table->timestamp('published_at')->nullable();
+            $table->timestamps();
 
             // showing relationship between posts and users
             $table->foreign('user_id')->references('id')->on('users');
