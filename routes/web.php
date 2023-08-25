@@ -31,3 +31,6 @@ Route::get('/posts/{post:slug}', [PostController::class, 'show'])->name('posts.s
 
 // show form to register
 Route::get('/register', [UserController::class, 'register'])->middleware('guest');
+
+// store a new user
+Route::post('/users', [UserController::class, 'store']);

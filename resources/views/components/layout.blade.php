@@ -5,13 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LaraBlog</title>
     <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
-    integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
-    crossorigin="anonymous"
-    referrerpolicy="no-referrer"
-/>
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+            integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        />
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.7/dist/tailwind.min.css" rel="stylesheet">
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const userDropdown = document.querySelector(".user-dropdown");
+            const userMenu = document.querySelector(".user-menu");
+            
+            userDropdown.addEventListener("click", function (event) {
+                event.stopPropagation();
+                userMenu.classList.toggle("hidden");
+            });
+            
+            document.addEventListener("click", function (event) {
+                if (!userDropdown.contains(event.target)) {
+                    userMenu.classList.add("hidden");
+                }
+            });
+        });
+    </script>
 </head>
 <body class="bg-gray-900 text-white">
 
@@ -31,8 +48,25 @@
             <div class="flex items-center space-x-4">
                
                 <a href="/posts/create" class="text-white">Create Post</a>
-                <a href="#" class="text-white">Login</a>
-                <a href="#" class="text-white">Register</a>
+                @auth 
+                <div class="relative inline-block text-left">
+                    <div class="user-dropdown">
+                        <button type="button" class="flex items-center focus:outline-none">
+                            <i class="fa-solid fa-user ml-2"></i>
+                            <span class="ml-2 text-gray-300">{{ Auth::user()->name }}</span>
+                            <i class="fa-solid fa-angle-down ml-2"></i>
+                        </button>
+                    </div>
+                    <div class="user-menu origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-gray-700 ring-1 ring-black ring-opacity-5">
+                        <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="user-menu">
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-600" role="menuitem">Logout</a>
+                        </div>
+                    </div>
+                </div>
+                @else
+                <a href="/login" class="text-white">Login</a>
+                <a href="/register" class="text-white">Register</a>
+                @endauth
             </div>
         </div>
     </nav>
