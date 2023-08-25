@@ -12,7 +12,7 @@ class Post extends Model
     protected $table = 'posts';
 
     protected $fillable = [
-        'title', 'slug', 'excerpt', 'content', 'category_id', 'user_id'
+        'title', 'slug', 'excerpt', 'content', 'category', 'user_id'
     ];
 
     // return user this post belongs to
@@ -21,11 +21,11 @@ class Post extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    // return category this post belongs to
-    public function category()
-    {
-        return $this->belongsTo(Category::class, 'category_id');
-    }
+    // // return category this post belongs to
+    // public function category()
+    // {
+    //     return $this->belongsTo(Category::class, 'category_id');
+    // }
 
     public function getRouteKeyName()
     {

@@ -26,4 +26,22 @@ class PostController extends Controller
             'post' => $post
         ]);
     }
+    // show form to create a new post
+    public function create()
+    {
+        return view('posts.create');
+    }
+
+    // store a new post
+    public function store(Request $request)
+    {
+        $formFields = $request->validate([
+            'title' => 'required',
+            'content' => 'required',
+        ]);
+
+        Post::create($formFields);
+
+        return redirect('/')->with('message', 'Post created successfully.');
+    }
 }
