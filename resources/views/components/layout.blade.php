@@ -64,7 +64,7 @@
                         <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="user-menu">
                             <form action="/logout" method="POST" class="inline" role="menuitem">
                                 @csrf
-                                <button type="submit" class="block w-full px-4 py-2 text-sm text-gray-300 hover:bg-gray-600">Logout</button>
+                                <button type="submit" class="block w-full px-4 py-2 text-sm text-gray-300 hover:bg-gray-600" >Logout</button>
                             </form>
                             
                         </div>

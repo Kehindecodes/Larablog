@@ -27,6 +27,9 @@ Route::get('/register', [UserController::class, 'register'])->middleware('guest'
 // store a new user
 Route::post('/users', [UserController::class, 'store']);
 
+
+Route::post('/logout', [UserController::class, 'logout'])->middleware('auth');
+
 // show form to login
 Route::get('/login', [UserController::class, 'login'])->name('login')->middleware('guest');
 
