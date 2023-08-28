@@ -14,8 +14,9 @@ Route::get('/posts/create', [PostController::class, 'create']);
 // store a new post
 Route::post('/posts', [PostController::class, 'store']);
 
-// show a single post using the slug
-Route::get('/posts/{post:slug}', [PostController::class, 'show'])->name('posts.show');
+Route::get('/posts/{slug}', 'PostController@show')->name('posts.show');
+
+
 
 
 
@@ -28,3 +29,10 @@ Route::post('/users', [UserController::class, 'store']);
 
 // show form to login
 Route::get('/login', [UserController::class, 'login'])->name('login')->middleware('guest');
+
+// show login
+Route::get('/login', [UserController::class, 'login'])->name('login');
+
+
+// login
+Route::post('/users/authenticate', [UserController::class, 'authenticate']);

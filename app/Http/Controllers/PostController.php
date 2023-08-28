@@ -18,14 +18,7 @@ class PostController extends Controller
             ]
         );
     }
-    // show a single post
-    public function show(Post $post)
 
-    {
-        return view('posts.post', [
-            'post' => $post
-        ]);
-    }
     // show form to create a new post
     public function create()
     {
@@ -43,5 +36,14 @@ class PostController extends Controller
         Post::create($formFields);
 
         return redirect('/')->with('message', 'Post created successfully.');
+    }
+
+    // show a single post
+    public function show(Post $post)
+
+    {
+        return view('posts.post', [
+            'post' => $post
+        ]);
     }
 }
