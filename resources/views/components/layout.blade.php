@@ -16,6 +16,8 @@
         document.addEventListener("DOMContentLoaded", function () {
             const userDropdown = document.querySelector(".user-dropdown");
             const userMenu = document.querySelector(".user-menu");
+
+            userMenu.classList.add("hidden");
             
             userDropdown.addEventListener("click", function (event) {
                 event.stopPropagation();
@@ -58,8 +60,13 @@
                         </button>
                     </div>
                     <div class="user-menu origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-gray-700 ring-1 ring-black ring-opacity-5">
+
                         <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="user-menu">
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-600" role="menuitem">Logout</a>
+                            <form action="/logout" method="POST" class="inline" role="menuitem">
+                                @csrf
+                                <button type="submit" class="block w-full px-4 py-2 text-sm text-gray-300 hover:bg-gray-600">Logout</button>
+                            </form>
+                            
                         </div>
                     </div>
                 </div>

@@ -31,4 +31,9 @@ class UserController extends Controller
         // redirect
         return redirect('/')->with('message', 'User created and logged in');
     }
+    // show login form 
+    public function login()
+    {
+        return view('users.login');
+    }
 }

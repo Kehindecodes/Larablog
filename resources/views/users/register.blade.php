@@ -53,6 +53,7 @@
                 </label>
                 <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-full w-full">Sign Up</button>
             </form>
+            <p class="mt-4 text-gray-400">Already have an account? <a href="/login" class="text-blue-400">Log in</a></p>
         </div>
     
     </body>
