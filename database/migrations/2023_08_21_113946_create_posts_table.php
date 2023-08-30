@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('excerpt');
             $table->longText('content');
             $table->string('category');
+            $table->string('image');
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
 

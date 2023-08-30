@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
@@ -25,19 +26,6 @@ class PostController extends Controller
         return view('posts.create');
     }
 
-    // store a new post
-    public function store(Request $request)
-    {
-        $formFields = $request->validate([
-            'title' => 'required',
-            'content' => 'required',
-        ]);
-
-        Post::create($formFields);
-
-        return redirect('/')->with('message', 'Post created successfully.');
-    }
-
     // show a single post
     public function show(Post $post)
 
@@ -45,5 +33,34 @@ class PostController extends Controller
         return view('posts.post', [
             'post' => $post
         ]);
+    }
+
+
+    // store a new post
+    public function store(Request $request)
+    {
+        $formFields = $request->validate([
+            'title' => 'required',
+            'content' => 'required',
+            'category' => 'required',
+        ]);
+
+        if ($request->hasFile('image')) {
+            $formFields['image'] = $request->file('image')->store('images', 'public');
+        }
+
+        $formFields['user_id'] = auth()->user()->id;
+
+        // form slug from the title
+        $slug = Str::slug($formFields['title']);
+        $formFields['slug'] = $slug;
+
+        // form excerpt from the content
+        $excerpt = Str::limit(strip_tags($formFields['content']), 150);
+        $formFields['excerpt'] = $excerpt;
+
+        Post::create($formFields);
+
+        return redirect('/')->with('message', 'Post created successfully.');
     }
 }

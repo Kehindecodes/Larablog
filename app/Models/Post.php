@@ -12,7 +12,7 @@ class Post extends Model
     protected $table = 'posts';
 
     protected $fillable = [
-        'title', 'slug', 'excerpt', 'content', 'category', 'user_id'
+        'title', 'slug', 'excerpt', 'content', 'category', 'user_id', 'image',
     ];
 
     // return user this post belongs to

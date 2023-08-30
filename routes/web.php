@@ -9,12 +9,12 @@ Route::get('/', [PostController::class, 'index']);
 
 
 // show form to create a new post
-Route::get('/posts/create', [PostController::class, 'create']);
+Route::get('/posts/create', [PostController::class, 'create'])->middleware('auth');
 
 // store a new post
 Route::post('/posts', [PostController::class, 'store']);
 
-Route::get('/posts/{slug}', 'PostController@show')->name('posts.show');
+Route::get('/posts/{post:slug}', [PostController::class, 'show'])->name('posts.show');
 
 
 

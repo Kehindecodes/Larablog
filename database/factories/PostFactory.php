@@ -23,6 +23,7 @@ class PostFactory extends Factory
             'slug' => $this->faker->slug(),
             'excerpt' => $this->faker->paragraph(1, true),
             'content' => $this->faker->paragraphs(3, true),
+            'image' => $this->faker->imageUrl(640, 480),
             'user_id' => User::factory(),
             'category' => 'Technology',
         ];
